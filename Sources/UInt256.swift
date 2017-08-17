@@ -5,6 +5,7 @@
 //  Created by Sjors Provoost on 23-06-14.
 
 import Foundation
+import CUInt256
 
 public struct UInt256: CustomStringConvertible { // : UnsignedInteger
     /*

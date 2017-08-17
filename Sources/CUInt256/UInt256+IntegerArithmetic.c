@@ -7,7 +7,7 @@
 
 //  C implementations for those functions that are too slow in their current
 //  Swift form. (Last checked for Swift 2.3)
-
+#import "include/UInt256+IntegerArithmetic.h"
 #include <stdio.h>
 #include <stdbool.h>
 
