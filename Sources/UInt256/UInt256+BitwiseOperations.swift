@@ -5,7 +5,7 @@
 //  Created by Sjors Provoost on 06-07-14.
 //
 
-extension UInt256: BitwiseOperations {
+extension UInt256 { //: FixedWidthInteger 
     var highestBit: Int {
         var bitLength: UInt32 = 256
         for int in self {

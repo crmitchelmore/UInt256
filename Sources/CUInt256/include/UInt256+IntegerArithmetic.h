@@ -6,42 +6,7 @@
 //  Copyright (c) 2014 Crypto Coin Swift. All rights reserved.
 //
 
-#ifdef __APPLE__
-#include "TargetConditionals.h"
-
-#if TARGET_IPHONE_SIMULATOR
-    #define iOs
-
-#elif TARGET_OS_IPHONE
-    #define iOs
-
-#elif TARGET_OS_MAC
-// mac os
-
-#else
-// Unsupported platform
-#endif
-#endif
-
-#ifdef iOs
-    #import <UIKit/UIKit.h>
-    //! Project version number for UInt256.
-    FOUNDATION_EXPORT double UInt256VersionNumber;
-
-    //! Project version string for UInt256.
-    FOUNDATION_EXPORT const unsigned char UInt256VersionString[];
-#else
-    #import <Cocoa/Cocoa.h>
-
-    //! Project version number for UInt256Mac.
-    FOUNDATION_EXPORT double UInt256MacVersionNumber;
-
-    //! Project version string for UInt256Mac.
-    FOUNDATION_EXPORT const unsigned char UInt256MacVersionString[];
-#endif
-
-
-
+#include <stdint.h>
 // In this header, you should import all the public headers of your framework using statements like #import <UInt256/PublicHeader.h>
 
 // Takes two arrays with 8 UInt32's each. They are exposed more for testing purposes than speed.

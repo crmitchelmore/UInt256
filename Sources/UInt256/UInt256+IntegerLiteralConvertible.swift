@@ -4,7 +4,7 @@
 //
 //  Created by Sjors Provoost on 06-07-14.
 //
-
+import Foundation
 extension UInt256: ExpressibleByIntegerLiteral {
 
     public init(integerLiteral value: IntegerLiteralType) {

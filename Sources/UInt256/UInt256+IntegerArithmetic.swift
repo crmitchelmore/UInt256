@@ -4,8 +4,35 @@
 //
 //  Created by Sjors Provoost on 06-07-14.
 //
-
-extension UInt256: IntegerArithmetic {
+import Foundation
+import CUInt256
+extension UInt256 { // : BinaryInteger, UnsignedInteger
+  
+  public typealias Words = UInt32
+  
+  public typealias Magnitude = UInt256
+  
+    public static func *=(lhs: inout UInt256, rhs: UInt256) {
+      lhs = lhs * rhs
+    }
+  
+    public static var isSigned: Bool {
+      return false
+    }
+  
+//    public var trailingZeroBitCount: Int {
+//      return 0
+//    }
+  
+    public static func /=(lhs: inout UInt256, rhs: UInt256) {
+      lhs = lhs / rhs
+    }
+  
+    public static func %=(lhs: inout UInt256, rhs: UInt256) {
+      lhs = lhs % rhs
+    }
+  
+ 
 
     public static func addWithOverflow(_ lhs: UInt256, _ rhs: UInt256) -> (UInt256, overflow: Bool) {
         var sum = UInt256.allZeros
@@ -72,13 +99,13 @@ extension UInt256: IntegerArithmetic {
 
         for i in 0 ..< 8 { num[i] = numerator[i]; den[i] = denominator[i] }
 
-        let result = remainderWithOverflowC(&num, &den)
+      let result = remainderWithOverflowC(&num, &den)
 
         return (UInt256(result![0], result![1], result![2], result![3], result![4], result![5], result![6], result![7]), false)
     }
 
     // I have no idea what this is supposed to do:
-    public func toIntMax() -> IntMax {
+  public func toIntMax() -> Int64 {
         return Int64(self[6] << 32 + self[7])
     }
 

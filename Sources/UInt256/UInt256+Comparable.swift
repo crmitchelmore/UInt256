@@ -4,8 +4,9 @@
 //
 //  Created by Sjors Provoost on 06-07-14.
 //
-
+import CUInt256
 /// As soon as one of its parts, ordered by significance, is smaller then the other's corresponding part, we can return.
+extension UInt256: Comparable {}
 public func < (lhs: UInt256, rhs: UInt256) -> Bool {
     for i in 0 ..< 8 {
         if lhs[i] < rhs[i] {
