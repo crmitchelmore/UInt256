@@ -269,7 +269,7 @@ public func * (lhs: UInt256, rhs: UInt256) -> UInt256 {
     }
 
     // Check if we're on a 64 bit system:
-    if CGFLOAT_IS_DOUBLE == 1 {
+  
         let thirtyTwoBitMask = UInt256(0, 0, 0, 0, 0, 0, 0, UInt32.max)
 
         if lhs == lhs & thirtyTwoBitMask && rhs == rhs & thirtyTwoBitMask {
@@ -298,45 +298,7 @@ public func * (lhs: UInt256, rhs: UInt256) -> UInt256 {
 
             return UInt256(0, 0, 0, 0, res[0], res[1], res[2], res[3])
         }
-    } else {
-        // We're on a 32 bit system, check if it's a 16 bit number
-
-        let sixteenBitMask = UInt256(0, 0, 0, 0, 0, 0, 0, 65535)
-
-        if lhs == lhs & sixteenBitMask && rhs == rhs & sixteenBitMask {
-            return UInt256(0, 0, 0, 0, 0, 0, 0, lhs[7] * rhs[7])
-        }
-
-        // We're on a 32 bit system, check if it's a 32 bit bit number
-        let thirtyTwoBitMask = UInt256(0, 0, 0, 0, 0, 0, 0, UInt32.max)
-
-        if lhs == lhs & thirtyTwoBitMask && rhs == rhs & thirtyTwoBitMask {
-
-            // Karatsuba
-
-            var x₁: UInt256
-            var x₀: UInt256
-            var y₁: UInt256
-            var y₀: UInt256
-
-            x₁ = UInt256(0, 0, 0, 0, 0, 0, 0, lhs[7] >> 16)
-            x₀ = UInt256(0, 0, 0, 0, 0, 0, 0, lhs[7] & 0x0000FFFF)
-
-            y₁ = UInt256(0, 0, 0, 0, 0, 0, 0, rhs[7] >> 16)
-            y₀ = UInt256(0, 0, 0, 0, 0, 0, 0, rhs[7] & 0x0000FFFF)
-
-            // Part of the calculation can be done using UInt32's
-            let z₂ = x₁[7] * y₁[7]
-            let z₀ = x₀[7] * y₀[7]
-
-            let x₁_plus_x₀ = UInt256(0, 0, 0, 0, 0, 0, 0, x₁[7] + x₀[7])
-            let y₁_plus_y₀ = UInt256(0, 0, 0, 0, 0, 0, 0, y₁[7] + y₀[7])
-
-            let z₁ = x₁_plus_x₀ * y₁_plus_y₀ - UInt256(0, 0, 0, 0, 0, 0, 0, z₂) - UInt256(0, 0, 0, 0, 0, 0, 0, z₀)
-
-            return UInt256(0, 0, 0, 0, 0, 0, z₂, z₀) + (z₁ << 16)
-        }
-    }
+  
 
     var x₁: UInt256
     var x₀: UInt256
@@ -346,8 +308,6 @@ public func * (lhs: UInt256, rhs: UInt256) -> UInt256 {
     var bitSize: Int
 
     // We're on a 32 bit machine or it's a 32+ bit number
-
-    let sixtyFourBitMask = UInt256(0, 0, 0, 0, 0, 0, UInt32.max, UInt32.max)
 
     let hundredTwentyEightBitMask = UInt256(0, 0, 0, 0, UInt32.max, UInt32.max, UInt32.max, UInt32.max)
 

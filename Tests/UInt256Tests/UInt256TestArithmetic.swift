@@ -279,17 +279,9 @@ class UInt256TestArithmetic: XCTestCase {
 
     func testDivideBigLiteral() {
         let a = UInt256(decimalString: "106030040005000600070")
-
-        if CGFLOAT_IS_DOUBLE == 1 {
         let result = "\(a / 1000000000000000000)"
         let c = "106"
         XCTAssertEqual(result, c, "\(a) / \(1000000000000000000) = \(result) != \(c)")
-        } else {
-            let b = UInt256(decimalString: "1000000000000000000")
-            let result = "\(a / b)"
-            let c = "106"
-            XCTAssertEqual(result, c, "\(a) / \(b) = \(result) != \(c)")
-        }
     }
 
     func testModuloLargest128bitPrime() {

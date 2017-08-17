@@ -9,6 +9,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "CUInt256", dependencies: []),
-        .target(name: "UInt256", dependencies: ["CUInt256"])
+        .target(name: "UInt256", dependencies: ["CUInt256"]),
+        .testTarget(name: "UInt256Tests", dependencies: ["UInt256"]),
     ]
 )
