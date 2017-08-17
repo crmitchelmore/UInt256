@@ -6,7 +6,7 @@
 //
 
 extension UInt256 { //: FixedWidthInteger 
-    var highestBit: Int {
+    public var highestBit: Int {
         var bitLength: UInt32 = 256
         for int in self {
             if int == 0 { bitLength -= 32 } else {
@@ -20,7 +20,7 @@ extension UInt256 { //: FixedWidthInteger
         return Int(bitLength)
     }
 
-    static func singleBitAt(_ position: Int) -> (UInt256) {
+    public static func singleBitAt(_ position: Int) -> (UInt256) {
         switch position {
         case 0:
             return UInt256(2147483648, 0, 0, 0, 0, 0, 0, 0)
